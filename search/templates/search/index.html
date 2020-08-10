@@ -1,0 +1,223 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="icon" href="{% static 'img/icon.jpg' %}" type="image/jpg">
+
+
+    <title>Search YouTube</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'search/album.css' %}" rel="stylesheet">
+  </head>
+  <body >
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <nav class="navbar navbar-dark bg-dark">
+
+ 
+      <form style="text-align:center;" class="form-inline my-2 my-lg-0">
+        <i style="font-size: 40px; color: red;" class="fab fa-youtube"></i>
+        <h2 style="color: aliceblue;">YouTube</h2>
+      </form>
+
+      
+      
+      <h2 class="navbar-brand" href="#">موقع ليدارك</h2>
+
+      <a class="nav-link p-0" href="/">
+        <img style="height: 80px; width: 80px;" src="{% static 'img/eee.jpg' %}" class="rounded-circle z-depth-0"
+          alt="avatar image" height="35">
+      </a>
+
+
+
+    </nav>
+
+
+
+
+    
+<main role="main">
+
+
+
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading"> بحث <i style="font-size: 48px; color: red;" class="fab fa-youtube"></i>YouTube</h1>
+      <p class="lead text-muted"> YouTube احصل على أفضل النتائج على  </p>
+      <form method="POST">
+      <div class="input-group mb-3">
+          {% csrf_token %}
+          
+          <button style="background-color: #343a40!important;" type="submit" name="submit" value="search" class="btn btn-secondary"><i style="width: 70px;" class="fas fa-search"></i></button>
+          <input type="text" name="search" class="form-control" placeholder="إبحث هنا" aria-label="Username">
+      </div>
+      <p>
+        <button style="background-color: rgb(24, 104, 22);" type="submit" name="submit" value="search" class="btn btn-primary my-2">بحث</button>
+        <button target="_blank" type="submit" name="submit" value="lucky" class="btn btn-secondary my-2" style="background-color: rgb(255, 0, 0);">YouTube الرسمي</button>
+      </p>
+      </form>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        {% for video in videos %}
+
+
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" style="height: 500px; ">
+            
+            <img class="bd-placeholder-img card-img-top" width="100%" height="250" src="{{ video.thumbnail }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"></img>
+            <div class="card-body">
+              <p class="card-text">{{ video.title }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                </div>
+              </div>
+            </div>
+<div>
+  <button type="button" class="btn btn-success"><i class="fas fa-download"></i> تحميل</button>
+  <button type="button" class="btn btn-secondary"><i class="fas fa-copy"></i> نسخ الرابط</button>
+
+</div>
+
+            <a target="_blank" href="{{ video.url }}" type="button" class="btn btn-danger">مشاهدة على يوتيوب</a>
+          </div>
+        </div>
+
+        
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<hr style="width: 50%;">
+
+<div style="width: 550px;" class="alert alert-danger" role="alert">
+  ملاحظة| خيار التحميل و النسخ سيتوفر قريبا بسبب الانشغال في امور دراسية
+</div>
+
+
+<div style="width: 550px;" class="alert alert-warning" role="alert">
+  الاضافات قريبا:<br>
+  - تفعيل خيار التحميل والنسخ<br>
+  - اضافة خيار المشاركة<br>
+  - اضافة خاصية مشاهدة الفيديو دون الذهاب الى منصة يوتيوب<br>
+  - حل مشاكل الموقع<br>
+  - اضافات وتحسينات متعددة
+</div>
+
+
+<hr style="width: 50%;">
+
+
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn" style="background-color: #343a40!important;">
+
+  <!--Call to action-->
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <div class="card-group mt-3">
+                
+              
+
+              <div class="card m-3">
+                    <h3 class="card-title text-center border-bottom p-2 m-3">من أنا</h3>
+                    
+                    <div class="card-body">
+                      <div class="text-center">
+                            <img src="{% static 'img/eee.jpg' %}" alt="شعار مدونة" width="100px">
+                        </div>
+                        <p>
+                          عبدالله مازن الحداد مالك موقع ليدارك. أعمل كمبرمج بناء مواقع وتطبيقات الانترنت ومدرب إلكتروني ومهتم بمجال تطوير الويب
+                        </p>
+                      </div>
+                </div>
+
+                <div class="card m-3">
+                    <h3 class="card-title text-center border-bottom p-2 m-3">مواقع هامة</h3>
+                    <div class="card-body">
+                        <ul>
+                            <li><a class="text-dark" href="https://www.python.org/doc/">وثائق بايثون</a></li>
+                            <li><a class="text-dark" href="https://docs.djangoproject.com/en/2.2/">وثائق
+                                    دجانجو</a></li>
+                            <li><a class="text-dark" href="https://developer.mozilla.org/">توثيق MDN</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card m-3">
+                    <h3 class="card-title text-center border-bottom p-2 m-3">وسائل التواصل الاجتماعي</h3>
+                    <h4 class="card-body text-center">
+                        <a target="_blank" class="text-secondary" href="https://www.facebook.com/abdullh.adrelaft"><i class="fab fa-facebook"></i></a>
+                        <a target="_blank" class="text-secondary" href="https://twitter.com/adrelaft"><i class="fab fa-twitter"></i></a>
+                        <a target="_blank" class="text-secondary" href=""><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" class="text-secondary" href=""><i class="fab fa-youtube"></i></a>
+                        <a target="_blank" class="text-secondary" href=""><i class="fab fa-telegram"></i></a>
+                        <a  target="_blank" class="text-secondary" href=""><i class="fab fa-linkedin"></i></a>
+                    </h4>
+                </div>
+
+            </div>
+            </div>
+        </div>
+    </div>
+  <!--/.Call to action-->
+
+  <hr class="my-4">
+
+  <!-- Social icons -->
+
+  <!-- Social icons -->
+
+  <!--Copyright-->
+  <div class="footer-copyright py-3">
+    <small class="text-light">&copy; جميع الحقوق محفوظة {% now 'Y' %}</small>
+  </div>
+  <!--/.Copyright-->
+
+</footer>
+
+
+
+
+</body>
+</html>
